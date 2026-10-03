@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>KOVA Essentials — Encuentra tu esencia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--ink:#080808;--ink2:#111;--gold:#c9a24e;--gold2:#e6c878;--cream:#f7f5f0;--card:#fff;--text:#181818;--muted:#747474;--line:#e7e3da;--shadow:0 14px 45px rgba(0,0,0,.09);--r:14px}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:Montserrat,sans-serif;background:var(--cream);color:var(--text);line-height:1.55;padding-bottom:50px} body.modal-open{overflow:hidden;height:100vh;touch-action:none} h1,h2,h3,.brand-font{font-family:'Playfair Display',serif} button,input,select{font:inherit} button{cursor:pointer}
+header{position:absolute;top:0;left:0;right:0;z-index:1000;background:transparent;color:#fff;border-bottom:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+.header-container{max-width:1320px;margin:auto;padding:8px 18px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:82px;position:relative;z-index:12}.header-left{justify-self:start}.header-right{justify-self:end;display:flex;align-items:center;gap:8px}.logo{display:flex;align-items:center;justify-content:center;text-decoration:none;width:72px;height:72px;overflow:hidden}.logo-image{width:30px;height:42px;object-fit:contain;display:block;transition:filter .35s ease,transform .2s ease}.menu-icon-btn,.header-icon-btn{width:42px;height:42px;border:0;background:rgba(0,0,0,.18);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:1.05rem;transition:color .35s ease,background .35s ease,transform .2s ease;box-shadow:0 2px 14px rgba(0,0,0,.14)}.menu-icon-btn:hover,.header-icon-btn:hover{background:rgba(0,0,0,.3);transform:translateY(-1px)}.explore{position:relative}.explore-menu{position:absolute;top:calc(100% + 10px);left:0;width:245px;background:#111;border:1px solid #3a3120;border-radius:12px;padding:8px;display:none;box-shadow:0 20px 45px #0008}.explore.open .explore-menu{display:block}.explore.open .menu-icon-btn{background:#111;color:#fff}.explore.open .menu-icon-btn i{transform:none}.menu-icon-btn i{transition:none}.explore-menu button{width:100%;text-align:left;border:0;background:transparent;color:#eee;padding:11px 12px;border-radius:8px}.explore-menu button:hover{background:#1e1b16;color:var(--gold2)}
+.cart-btn{position:relative;border:0;background:transparent;color:#111;padding:0;width:42px;height:42px;display:grid;place-items:center}.cart-btn:hover{background:#ebe7df;color:#111}.cart-btn .label{display:none}.badge{position:absolute;right:0px;top:0px;background:#111;color:#fff;border-radius:50%;min-width:18px;height:18px;font-size:.62rem;font-weight:700;display:grid;place-items:center;border:2px solid var(--cream)}
+.header-contrast-light .menu-icon-btn,.header-contrast-light .header-icon-btn,.header-contrast-light .cart-btn{color:#111;background:rgba(255,255,255,.72);box-shadow:0 2px 14px rgba(0,0,0,.12)}
+.header-contrast-light .menu-icon-btn:hover,.header-contrast-light .header-icon-btn:hover,.header-contrast-light .cart-btn:hover{background:rgba(255,255,255,.92)}
+.header-contrast-light .logo-image{filter:none}
+.header-contrast-light .badge{box-shadow:0 0 0 2px rgba(255,255,255,.55)}
+
+.search-panel{display:none;position:absolute;left:0;right:0;top:100%;padding:12px 18px 14px;background:rgba(247,245,240,.98);border-bottom:1px solid var(--line);box-shadow:0 10px 24px rgba(0,0,0,.08)}.search-panel.open{display:block}.search-panel-inner{max-width:720px;margin:auto;position:relative}.search-panel input{width:100%;height:46px;padding:0 46px 0 18px;border:1px solid var(--line);border-radius:24px;background:#fff;outline:none}.search-panel .search-submit{position:absolute;right:6px;top:5px;width:36px;height:36px;border:0;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center}
+.hero{position:relative;min-height:44vh;display:grid;place-items:center;text-align:center;overflow:hidden} .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s,transform 8s;transform:scale(1.04)} .hero-slide.active{opacity:1;transform:scale(1)} .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0005,#000b 90%)} .hero-content{position:relative;z-index:2;max-width:760px;padding:55px 20px;color:#fff} .hero h1{font-size:clamp(2rem,4.5vw,3.5rem);letter-spacing:4px;color:var(--gold2)} .hero-tagline{font-family:'Playfair Display';font-style:italic;font-size:1.12rem;margin:8px 0 12px} .hero p{max-width:680px;margin:auto;color:#eee}
+.intro{max-width:780px;margin:-20px auto 24px;position:relative;z-index:5;padding:14px 20px;background:#111;color:#fff;border:1px solid #3b301e;border-radius:16px;box-shadow:var(--shadow);text-align:center} .intro strong{color:var(--gold2)}
+
+.controls{max-width:1280px;margin:auto;padding:0 20px 25px} 
+.control-top{display:flex;gap:12px;align-items:center;justify-content:center;width:100%} 
+.search{position:relative;flex:1;max-width:480px} 
+.search input{width:100%;height:46px;padding:0 16px 0 44px;border:1px solid var(--line);border-radius:30px;background:#fff;outline:none} 
+.search i{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.drawer-toggle{height:46px;background:#fff;border:1px solid var(--line);padding:0 20px;border-radius:30px;display:flex;align-items:center;gap:10px;font-weight:600;white-space:nowrap} 
+.drawer-toggle span{color:var(--gold);display:flex;align-items:center;gap:6px} 
+.drawer-toggle .fa-chevron-down{transition:transform .2s;font-size:.8rem}.drawer-toggle.open .fa-chevron-down{transform:rotate(180deg)}
+
+.filter-drawer{display:none;background:#fff;border:1px solid var(--line);padding:18px;border-radius:12px;margin-top:12px} .filter-drawer.open{display:block} .filter-row{display:flex;gap:10px;flex-wrap:wrap} .filter-row select,.filter-row button{padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff} .filter-row button.active{background:#111;color:#fff;border-color:#111} .clear{color:#9b752d}
+.catalog-head{max-width:1280px;margin:0 auto 18px;padding:0 20px;display:flex;justify-content:space-between;align-items:center} .catalog-head h2{font-size:2rem} .catalog-head small{color:var(--muted)} .catalog{max-width:1280px;margin:auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 3px 16px #00000008;transition:.25s;display:flex;flex-direction:column} .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)} .pic{height:280px;background:#f5f4f1;position:relative} .pic img{width:100%;height:100%;object-fit:contain;padding:12px} .tag{position:absolute;left:12px;top:12px;background:#111;color:var(--gold2);padding:5px 9px;border-radius:20px;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px} .fav{position:absolute;right:10px;top:10px;width:38px;height:38px;border-radius:50%;border:1px solid #ddd;background:rgba(255,255,255,.96);display:grid;place-items:center;color:#777;z-index:3;box-shadow:0 3px 12px rgba(0,0,0,.12);transition:.2s}.fav:hover{transform:scale(1.06);border-color:var(--gold);box-shadow:0 5px 16px rgba(0,0,0,.18)} .fav.active{color:#b58a2d;border-color:var(--gold);background:#fffaf0} .card-body{padding:17px;display:flex;flex-direction:column;flex:1} .card h3{font-size:1.28rem} .inspired{font-size:.78rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin:4px 0 9px} .desc{font-size:.84rem;color:var(--muted);flex:1;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;text-overflow:ellipsis;line-height:1.45;min-height:2.9em} .chips{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0} .chip{font-size:.65rem;border:1px solid var(--line);padding:4px 7px;border-radius:20px;color:#666} .actions{display:grid;grid-template-columns:1fr auto;gap:8px} 
+
+.variant{width:100%;padding:6px 4px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:.68rem !important;text-overflow:ellipsis;white-space:nowrap;overflow:hidden} 
+.add{grid-column:1/-1;background:#111;color:#fff;border:1px solid var(--gold);padding:8px 4px;border-radius:8px;font-weight:700;font-size:.70rem !important;white-space:nowrap;line-height:1.2;min-width:0;overflow:hidden;text-overflow:ellipsis} .add:hover{background:var(--gold);color:#111}
+
+.empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--muted)}
+.section{max-width:1280px;margin:55px auto 0;padding:0 20px} .section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:16px} .collection-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px} 
+
+/* Estilos de las tarjetas de colecciones sin imágenes de fondo */
+.collection{
+  background:#111;
+  color:#fff;
+  border:1px solid #312818;
+  border-radius:13px;
+  padding:22px;
+  min-height:140px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-align:left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+} 
+.collection:hover{border-color:var(--gold); transform: translateY(-3px);} 
+.collection h3{color:#fff; z-index: 2;} 
+.collection small{color:#eee; margin-top:4px; z-index: 2;} 
+.future{opacity:.55; background: #111 !important;}
+
+.combo{background:#111;color:#fff;border-radius:16px;padding:25px;border:1px solid #40351f} .combo-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px} .combo-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-height:360px;overflow:auto;padding-right:5px} .combo-option{background:#181818;border:1px solid #292929;border-radius:9px;padding:10px;display:flex;gap:8px;align-items:center} .combo-option input{accent-color:var(--gold)} .combo-summary{background:#151515;border:1px solid #30291d;border-radius:12px;padding:18px;height:max-content;position:sticky;top:80px} .summary-line{display:flex;justify-content:space-between;margin:8px 0;color:#ddd} .summary-line.total{border-top:1px solid #3a3327;padding-top:12px;color:var(--gold2);font-size:1.25rem;font-weight:700} .combo-btn{width:100%;margin-top:14px;padding:12px;border:0;border-radius:8px;background:var(--gold);font-weight:700}
+footer{margin-top:65px;background:#080808;color:#aaa;text-align:center;padding:35px 20px;border-top:1px solid #312818} footer strong{color:var(--gold2)}
+.cart-overlay{position:fixed;inset:0;background:#0009;z-index:1090;display:none} .cart-overlay.open{display:block} .cart{position:fixed;right:-430px;top:0;width:min(430px,100%);height:100vh;height:100dvh;background:#fff;z-index:1100;transition:.3s;display:flex;flex-direction:column;overflow:hidden} .cart.open{right:0} .cart-head{background:#111;color:#fff;padding:17px;display:flex;justify-content:space-between;align-items:center} .cart-head button{background:none;border:0;color:#fff;font-size:1.2rem} .cart-body{padding:18px;overflow:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch} .cart-item{display:grid;grid-template-columns:65px 1fr;gap:10px;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:13px} .cart-item img{width:65px;height:65px;object-fit:contain;background:#f5f4f1;border-radius:8px} .qty{display:flex;gap:7px;align-items:center;margin-top:6px} .qty button{width:24px;height:24px;border:1px solid var(--line);background:#fff;border-radius:5px} .cart-foot{padding:14px 18px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#faf9f5;flex:0 0 auto;position:relative;z-index:2} .total{display:flex;justify-content:space-between;font-weight:700;margin-bottom:13px} .total b{color:#a27b28} .wa{display:block;text-align:center;text-decoration:none;background:#25d366;color:#fff;padding:13px;border-radius:8px;font-weight:700;min-height:46px;box-sizing:border-box}
+.modal{position:fixed;overflow:hidden;touch-action:auto;inset:0;background:#000a;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px} .modal.open{display:flex} .modal-box{width:min(850px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:16px;padding:25px;position:relative} .modal-close{position:absolute;right:14px;top:12px;border:0;background:none;font-size:1.4rem} .detail{display:grid;grid-template-columns:320px 1fr;gap:25px} .detail img{width:100%;height:320px;object-fit:contain;background:#f5f4f1;border-radius:12px} .detail h2{font-size:2rem} .detail .meta{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:.8rem}
+@media(max-width:800px){.collection-grid{grid-template-columns:1fr 1fr} .combo-grid,.detail{grid-template-columns:1fr} .combo-list{grid-template-columns:1fr} .combo-summary{position:static} .nav .explore-btn span,.cart-btn span.label{display:none}}
+@media(max-width:500px){.cart{width:100%;height:100dvh}.cart-head{padding:15px 16px;flex:0 0 auto}.cart-body{padding:14px 16px}.cart-foot{padding:12px 16px calc(12px + env(safe-area-inset-bottom));}.cart-foot .total{margin-bottom:10px}.cart-foot .wa{padding:12px;font-size:.92rem;} .header-container{padding:6px 12px;min-height:72px}.logo{width:52px;height:58px}.logo-image{width:24px;height:38px}.menu-icon-btn,.header-icon-btn,.cart-btn{width:40px;height:40px}.hero{min-height:36vh}.hero-content{padding:38px 16px}.hero h1{font-size:1.75rem;letter-spacing:3px}.hero-tagline{font-size:1rem}.hero p{font-size:.78rem}.intro{margin:-12px 14px 18px;padding:11px 14px;font-size:.76rem} .catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 10px} .card .pic{height:190px} .card-body{padding:12px} .card h3{font-size:1.02rem} .desc{font-size:.76rem} .actions{grid-template-columns:1fr} .variant{font-size:.65rem !important;padding:5px 2px} .actions .add{font-size:.68rem !important;padding:7px 2px} .collection-grid{grid-template-columns:1fr} .catalog-head,.controls,.section{padding-left:14px;padding-right:14px}}
+
+@media (prefers-color-scheme: dark){
+:root{--ink:#050505;--ink2:#0d0d0d;--gold:#d2ad58;--gold2:#efd58b;--cream:#0b0b0b;--card:#141414;--text:#f4f1ea;--muted:#aaa59a;--line:#2d2b27;--shadow:0 14px 45px rgba(0,0,0,.38)}
+body{background:var(--cream);color:var(--text)}
+header{background:transparent;color:#fff}.menu-icon-btn,.header-icon-btn,.cart-btn{color:#fff}.menu-icon-btn:hover,.header-icon-btn:hover,.cart-btn:hover{background:rgba(0,0,0,.3);color:#fff}.logo-image{filter:none}.search-panel{background:rgba(11,11,11,.98);border-bottom-color:#2d2b27}.search-panel input{background:#171717;color:#f4f1ea;border-color:#2d2b27}.search-submit{background:#f0d48b!important;color:#111!important}.badge{background:#f0d48b;color:#111;border-color:#0b0b0b}
+.search input,.drawer-toggle,.filter-drawer,.filter-row select,.filter-row button,.variant,.fav{background:#171717;color:var(--text);border-color:var(--line)}
+.search input::placeholder{color:#8d8a83}.search i{color:#aaa}
+.drawer-toggle{color:var(--text)}
+.filter-drawer{color:var(--text)}
+.filter-row button.active{background:#f1ede3;color:#111;border-color:#f1ede3}
+.card{background:var(--card);border-color:var(--line);box-shadow:0 3px 18px rgba(0,0,0,.28)}
+.pic{background:#101010}.tag{background:#f0d48b;color:#17120a}.fav{color:#aaa}.fav.active{background:#241e12;color:var(--gold2);border-color:var(--gold)}
+.chip{color:#bbb;border-color:#3a3833}.desc{color:#aaa}.inspired{color:var(--gold2)}
+.add{background:#f0d48b;color:#111}.add:hover{background:#fff0bd;color:#111}
+.combo{background:#111;border-color:#40351f}.combo-option{background:#181818;border-color:#302f2c}.combo-summary{background:#151515;border-color:#30291d}
+.cart{background:#121212;color:var(--text)}.cart-head{background:#080808}.cart-item{border-bottom-color:var(--line)}.cart-item img{background:#0d0d0d}.qty button{background:#171717;color:var(--text);border-color:var(--line)}.cart-foot{background:#101010;border-top-color:var(--line)}
+.modal-box{background:#141414;color:var(--text)}.detail img{background:#0d0d0d}.detail p{color:#aaa!important}.modal-close{color:var(--text)}
+.explore-menu{background:#151515;border-color:#3a3120}.explore-menu button{color:#eee}.explore-menu button:hover{background:#242018;color:var(--gold2)}
+}
+
+.menu-icon-btn i{transform:none !important;transition:none !important}
+.explore.open .menu-icon-btn i{transform:none !important}
+.collection-grid{grid-auto-rows:1fr;align-items:stretch}
+.collection{height:100%;min-height:140px;justify-content:space-between}
+.collection h3{min-height:2.8em;display:flex;align-items:flex-end}
+.collection small{min-height:2.8em;display:flex;align-items:flex-start}
+.card{cursor:pointer}
+.card .fav,.card .actions,.card select{cursor:auto}
+.desc{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden;text-overflow:ellipsis;min-height:1.35em}
+.catalog-title-wrap{display:flex;align-items:baseline;gap:12px}
+@media(max-width:600px){.collection h3{min-height:2.5em}.collection small{min-height:2.5em}}
+</style></head>
+<body>
+<header><div class="header-container"><div class="header-left"><div class="explore" id="explore"><button class="menu-icon-btn" id="exploreBtn" aria-label="Explorar KOVA" title="Explorar KOVA"><i class="fa-solid fa-bars"></i></button><div class="explore-menu">
+<button data-jump="catalog"><i class="fa-solid fa-spray-can-sparkles"></i> Catálogo</button><button data-category="todos">Todos</button><button data-category="hombre">Hombre</button><button data-category="mujer">Mujer</button><button data-category="unisex">Unisex</button><button data-jump="collections">Colecciones</button><button data-jump="combo">Crea tu Combo</button><button data-jump="favorites">Favoritos</button></div></div></div><a class="logo" href="#top" aria-label="KOVA"><img class="logo-image" src="img/kova_k.png" alt="KOVA"></a><div class="header-right"><button class="header-icon-btn" id="searchToggle" aria-label="Buscar" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button><button class="cart-btn" id="cartToggle" aria-label="Carrito" title="Carrito"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cartCount">0</span></button></div></div><div class="search-panel" id="searchPanel"><div class="search-panel-inner"><input id="searchInput" placeholder="Buscar perfume o referencia..." autocomplete="off"><button class="search-submit" id="searchSubmit" aria-label="Cerrar búsqueda"><i class="fa-solid fa-xmark"></i></button></div></div></header>
+<section class="hero" id="top"><div class="hero-slide active" style="background-image:url('img/portada.jpg.JPG')"></div><div class="hero-slide" style="background-image:url('img/IMG_2723.PNG')"></div><div class="hero-content"><h1>KOVA ESSENTIALS</h1><div class="hero-tagline">“Esencia que habla por ti”</div><p>Una selección curada de fragancias inspiradas en grandes referencias, pensada para ayudarte a encontrar un aroma que encaje contigo. <strong>Encuentra tu esencia.</strong></p></div></section>
+<div class="intro"><strong>Encuentra tu esencia.</strong> Explora por categoría, descubre colecciones, guarda tus favoritos o crea un combo a tu medida.</div>
+
+<section class="controls" id="catalog">
+  <div class="control-top">
+    <button class="drawer-toggle" id="filterToggle">
+      <span><i class="fa-solid fa-sliders"></i> Filtros</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+  </div>
+  <div class="filter-drawer" id="filterDrawer">
+    <div class="filter-row">
+      <select id="categoryFilter"><option value="todos">Categoría: Todas</option><option value="hombre">Hombre</option><option value="mujer">Mujer</option><option value="unisex">Unisex</option></select>
+      <select id="familyFilter"><option value="todos">Familia olfativa: Todas</option><option>Amaderada</option><option>Oriental</option><option>Fresca</option><option>Floral</option><option>Gourmand</option><option>Cuero</option><option>Ámbar</option><option>Frutal</option></select>
+      <select id="collectionFilter"><option value="todos">Colección: Todas</option><option value="duppe">Duppé</option><option value="eternals">Eternals Perfume Oil</option><option value="compoundone">Compound One</option></select>
+      <button id="favFilter"><i class="fa-regular fa-heart"></i> Solo favoritos</button>
+      <button class="clear" id="clearFilters">Limpiar</button>
+    </div>
+  </div>
+</section>
+
+<div class="catalog-head">
+  <div>
+    <h2>Catálogo</h2>
+    <small id="resultCount"></small>
+  </div>
+  <button class="tab-btn" id="quickFav"><i class="fa-regular fa-heart"></i> Favoritos</button>
+</div>
+
+<main class="catalog" id="catalogGrid"></main>
+<section class="section" id="collections"><div class="section-title"><div><h2>Colecciones</h2><small>Explora por universo</small></div></div><div class="collection-grid"><button class="collection" data-collection="duppe"><h3>Duppé</h3><small>Inspiraciones de la colección principal</small></button><button class="collection" data-collection="eternals"><h3>Eternals Perfume Oil</h3><small>Una línea para descubrir nuevas esencias</small></button><button class="collection" data-collection="compoundone"><h3>Compound One</h3><small>Extrait de Parfum · 30 ml</small></button><button class="collection future" disabled><h3>Victoria’s Secret</h3><small>Próximamente</small></button><button class="collection future" disabled><h3>Orientales & Turcos</h3><small>Próximamente</small></button></div></section>
+<section class="section" id="combo"><div class="section-title"><div><h2>Crea tu Combo</h2><small>Selecciona tus fragancias y obtén descuento progresivo por cantidad.</small></div></div><div class="combo"><div class="combo-grid"><div><div class="combo-list" id="comboList"></div></div><div class="combo-summary"><div class="summary-line"><span>Fragancias</span><span id="comboQty">0</span></div><div class="summary-line"><span>Subtotal</span><span id="comboSubtotal">$0 USD</span></div><div class="summary-line"><span>Descuento</span><span id="comboDiscount">$0 USD</span></div><div class="summary-line total"><span>Total</span><span id="comboTotal">$0 USD</span></div><small id="comboHint" style="color:#999">Selecciona al menos 2 fragancias.</small><button class="combo-btn" id="addCombo" disabled><i class="fa-solid fa-plus"></i> Agregar combo al carrito</button></div></div></div></section>
+<footer><strong>KOVA ESSENTIALS</strong><p>Encuentra tu esencia.</p><small>Catálogo digital • Pedidos por WhatsApp</small></footer>
+<div class="cart-overlay" id="overlay"></div><aside class="cart" id="cart"><div class="cart-head"><strong>Tu carrito</strong><button id="closeCart"><i class="fa-solid fa-xmark"></i></button></div><div class="cart-body" id="cartItems"></div><div class="cart-foot"><div class="total"><span>Total</span><b id="cartTotal">$0 USD</b></div><a class="wa" id="sendWhatsApp" href="#"><i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp</a></div></aside>
+<div class="modal" id="detailModal"><div class="modal-box"><button class="modal-close" id="detailClose"><i class="fa-solid fa-xmark"></i></button><div id="detailContent"></div></div></div>
+<script>
+const products = [
+      { 
+        id: 1,  
+        name: "1 Million", 
+        ref: "Gold Digger", 
+        category: "hombre",
+        img: "img/img-002.png", 
+        desc: "Una fragancia audaz con notas amaderadas y toques de cuero y especias, perfecta para destacar en la noche.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 2,  
+        name: "Tom Ford F'n Fabulous", 
+        ref: "F'n Marvelous", 
+        category: "unisex",
+        img: "img/img-003.png", 
+        desc: "Un aroma cuero-oriental sofisticado y exclusivo, enriquecido con almendra amarga y haba tonka.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 3,  
+        name: "Sauvage Elixir", 
+        ref: "Savage Spell", 
+        category: "hombre",
+        img: "img/img-004.png", 
+        desc: "Concentración extraordinaria de notas especiadas, lavanda fresca y un fondo de maderas ricas.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 4,  
+        name: "Christian Clive Blonde Amber", 
+        ref: "Goldie Luxe", 
+        category: "unisex",
+        img: "img/goldie_luxe.jpg", 
+        desc: "Ámbar cálido, notas frutales y un toque de ron que evocan elegancia atemporal.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 5,  
+        name: "Creed Queen of Silk", 
+        ref: "Sew Over You", 
+        category: "mujer",
+        img: "img/sew_over_you.jpg", 
+        desc: "Una esencia envolvente con flores blancas, vainilla suave y notas amaderadas delicadas.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 6,  
+        name: "YSL Libre", 
+        ref: "Libre-Ate Me", 
+        category: "mujer",
+        img: "img/img-005.png", 
+        desc: "El equilibrio perfecto entre la lavanda francesa y la flor de azahar marroquí.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 7,  
+        name: "JPG Le Male Elixir", 
+        ref: "Alpha Elixir", 
+        category: "hombre",
+        img: "img/alpha_elixir.jpg", 
+        desc: "Intenso y sensual con notas dulces de haba tonka, menta fresca y benjuí.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 8,  
+        name: "Tom Ford Electric Cherry", 
+        ref: "Cherry Spark", 
+        category: "unisex",
+        img: "img/img-006.png", 
+        desc: "Cereza ácida combinada con jazmín dulce y pimienta rosada vibrante.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 9,  
+        name: "Bleu de Chanel", 
+        ref: "Azure Depth", 
+        category: "hombre",
+        img: "img/img-007.png", 
+        desc: "Una fragancia aromática y amaderada de carácter independiente y elegante.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 10, 
+        name: "Azzaro Most Wanted", 
+        ref: "Wanted Dead or Adored", 
+        category: "hombre",
+        img: "img/img-010.png", 
+        desc: "Un aroma amaderado oriental de alta intensidad con cardamomo, toffee y madera de ámbar.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 11, 
+        name: "YSL Y", 
+        ref: "Why Not", 
+        category: "hombre",
+        img: "img/img-011.png", 
+        desc: "Aroma fresco y profundo con notas de bergamota, salvia y madera de cedro.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 12, 
+        name: "JPG Ultra Male", 
+        ref: "Alpha Noir", 
+        category: "hombre",
+        img: "img/img-012.png", 
+        desc: "Una explosión de pera dulce, lavanda negra y vainilla amaderada.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 13, 
+        name: "Viktor Rolf Spicebomb Extreme", 
+        ref: "Spice to Meet You", 
+        category: "hombre",
+        img: "img/img-013.png", 
+        desc: "Combinación explosiva de especias cálidas, comino, canela y tabaco rico.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 14, 
+        name: "Tom Ford Ombré Leather", 
+        ref: "Leather Late Than Never", 
+        category: "unisex",
+        img: "img/img-014.png", 
+        desc: "Cuero texturizado, cardamomo y jazmín que proyectan libertad y profundidad.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 15, 
+        name: "Born in Roma Intense", 
+        ref: "When in Roma", 
+        category: "hombre",
+        img: "img/img-015.png", 
+        desc: "Un homenaje moderno con notas de vainilla magnética y jazmín solar.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 17, 
+        name: "Ex Nihilo Blue Talisman", 
+        ref: "Ya Blue Me Away", 
+        category: "unisex",
+        img: "img/img-017.png", 
+        desc: "Pera, bergamota, flor de azahar y maderas que crean un amuleto olfativo único.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 18, 
+        name: "Acqua di Giò Profumo", 
+        ref: "Holy Ship You Clean Up Nice", 
+        category: "hombre",
+        img: "img/holy_ship.jpg", 
+        desc: "Frescura marina combinada con la profundidad del incienso y el pachulí.",
+        variants: [
+          { size: "20 ml", priceUSD: 20 },
+          { size: "50 ml", priceUSD: 35 }
+        ]
+      },
+      { 
+        id: 19, 
+        name: "Miss Dior", 
+        ref: "Cherry On Top", 
+        category: "mujer",
+        img: "img/cherry_on_top.jpg", 
+        desc: "Un bouquet floral elegante con notas de rosa de Grasse, peonía y un toque fresco y romántico.",
+        variants: [
+          { size: "30 ml", priceUSD: 20 }
+        ]
+      },
+      { 
+        id: 20, 
+        name: "Tom Ford Tobacco Vanille", 
+        ref: "Cigars & Ice Cream", 
+        category: "unisex",
+        img: "img/cigars_ice_cream.jpg", 
+        desc: "Una opulenta mezcla de hoja de tabaco, especias aromáticas, vainilla dulce y cacao suave.",
+        variants: [
+          { size: "30 ml", priceUSD: 20 }
+        ]
+      },
+      { 
+        id: 21, 
+        name: "YSL MYSLF", 
+        ref: "Eternal Bergamot", 
+        category: "hombre",
+        img: "img/eternal_bergamot.jpg", 
+        desc: "Una fragancia floral-amaderada moderna centrada en la bergamota fresca y la flor de azahar.",
+        variants: [
+          { size: "30 ml", priceUSD: 20 }
+        ]
+      },
+      { 
+        id: 22, 
+        name: "Paco Rabanne Invictus", 
+        ref: "Exor", 
+        category: "hombre",
+        img: "img/exor.jpg", 
+        desc: "Aroma fresco y vibrante con acorde marino, pomelo radiante y un fondo de madera de gualaco.",
+        variants: [
+          { size: "30 ml", priceUSD: 20 }
+        ]
+      },
+      { 
+        id: 23, 
+        name: "Louis Vuitton Ombre Nomade", 
+        ref: "Incense Oud", 
+        category: "unisex",
+        img: "img/incense_oud.jpg", 
+        desc: "Un viaje sensorial intenso cargado de madera de Oud, lágrimas de incienso y toques de frambuesa.",
+        variants: [
+          { size: "30 ml", priceUSD: 20 }
+        ]
+      },
+      { 
+        id: 24, 
+        name: "Versace Eros", 
+        ref: "Mint Ocean", 
+        category: "hombre",
+        img: "img/mint_ocean.jpg", 
+        desc: "Una explosión de frescura con menta, manzana verde y limón italiano respaldados por haba tonka.",
+        variants: [
+          { size: "30 ml", priceUSD: 20 }
+        ]
+      },
+      { 
+        id: 25,
+        name: "Sauvage Elixir",
+        ref: "Desert Elixir",
+        category: "hombre",
+        img: "img/desert_elixir.webp",
+        desc: "Una interpretación intensa y especiada, con lavanda, cítricos y un fondo amaderado.",
+        variants: [{ size: "30 ml", priceUSD: 25 }]
+      },
+      { 
+        id: 26,
+        name: "Bleu de Chanel",
+        ref: "Blue Eclipse",
+        category: "hombre",
+        img: "img/blue_eclipse.webp",
+        desc: "Un perfil aromático y amaderado, fresco y elegante, pensado para el uso diario.",
+        variants: [{ size: "30 ml", priceUSD: 25 }]
+      },
+      { 
+        id: 27,
+        name: "Carolina Herrera Good Girl",
+        ref: "Midnight Heel",
+        category: "mujer",
+        img: "img/midnight_heel.webp",
+        desc: "Una mezcla envolvente de flores blancas, almendra y un fondo cálido y sofisticado.",
+        variants: [{ size: "30 ml", priceUSD: 25 }]
+      },
+      { 
+        id: 28,
+        name: "Azzaro The Most Wanted",
+        ref: "Final Hour",
+        category: "hombre",
+        img: "img/final_hour.webp",
+        desc: "Dulce, cálida y especiada, con cardamomo, caramelo y maderas de ámbar.",
+        variants: [{ size: "30 ml", priceUSD: 25 }]
+      },
+      { 
+        id: 29,
+        name: "YSL Y",
+        ref: "Why Y",
+        category: "hombre",
+        img: "img/why_y.webp",
+        desc: "Fresca y aromática, con manzana, salvia y maderas en un perfil limpio y moderno.",
+        variants: [{ size: "30 ml", priceUSD: 25 }]
+      },
+      { 
+        id: 30,
+        name: "Rabanne 1 Million",
+        ref: "Crown Fortune",
+        category: "hombre",
+        img: "img/crown_fortune.webp",
+        desc: "Un acorde cálido y especiado con cítricos, canela y una base dulce y amaderada.",
+        variants: [{ size: "30 ml", priceUSD: 25 }]
+      }
+];
+
+const meta={
+1:['Oriental','duppe',['Dulce','Amaderada']],2:['Cuero','duppe',['Cuero','Oriental']],3:['Oriental','duppe',['Especiada','Amaderada']],4:['Ámbar','duppe',['Ámbar','Frutal']],5:['Floral','duppe',['Floral','Amaderada']],6:['Floral','duppe',['Floral','Fresca']],7:['Gourmand','duppe',['Dulce','Fresca']],8:['Frutal','duppe',['Frutal','Floral']],9:['Amaderada','duppe',['Fresca','Amaderada']],10:['Gourmand','duppe',['Dulce','Especiada']],11:['Fresca','duppe',['Fresca','Amaderada']],12:['Gourmand','duppe',['Dulce','Frutal']],13:['Oriental','duppe',['Especiada','Amaderada']],14:['Cuero','duppe',['Cuero','Amaderada']],15:['Gourmand','duppe',['Dulce','Floral']],17:['Fresca','duppe',['Frutal','Fresca']],18:['Fresca','duppe',['Marina','Amaderada']],19:['Floral','eternals',['Floral','Frutal']],20:['Gourmand','eternals',['Dulce','Especiada']],21:['Floral','eternals',['Floral','Fresca']],22:['Fresca','eternals',['Fresca','Frutal']],23:['Oriental','eternals',['Oud','Amaderada']],24:['Fresca','eternals',['Fresca','Gourmand']],25:['Oriental','compoundone',['Especiada','Amaderada']],26:['Amaderada','compoundone',['Fresca','Amaderada']],27:['Floral','compoundone',['Floral','Oriental']],28:['Gourmand','compoundone',['Dulce','Especiada']],29:['Fresca','compoundone',['Fresca','Amaderada']],30:['Gourmand','compoundone',['Dulce','Especiada']]
+};
+
+products.forEach(p=>{const m=meta[p.id]||['Amaderada','duppe',[]];p.family=m[0];p.collection=m[1];p.tags=m[2]||[]});
+let cart=JSON.parse(localStorage.getItem('kovaCart')||'[]'), favorites=new Set(JSON.parse(localStorage.getItem('kovaFavorites')||'[]'));
+let filters={category:'todos',family:'todos',collection:'todos',favorites:false}, slides=[...document.querySelectorAll('.hero-slide')], slide=0;
+const siteHeader=document.querySelector('header');
+function syncHeroHeaderContrast(){ siteHeader.classList.toggle('header-contrast-light', slide===1); }
+syncHeroHeaderContrast();
+const $=id=>document.getElementById(id); function money(n){return `$${n.toFixed(2).replace('.00','')} USD`}
+setInterval(()=>{slides[slide]?.classList.remove('active');slide=(slide+1)%slides.length;slides[slide]?.classList.add('active');syncHeroHeaderContrast()},5500);
+function save(){localStorage.setItem('kovaCart',JSON.stringify(cart));localStorage.setItem('kovaFavorites',JSON.stringify([...favorites]))}
+function filtered(){const q=$('searchInput').value.toLowerCase().trim();return products.filter(p=>(filters.category==='todos'||p.category===filters.category)&&(filters.family==='todos'||p.family===filters.family)&&(filters.collection==='todos'||p.collection===filters.collection)&&(!filters.favorites||favorites.has(p.id))&&(!q||[p.name,p.ref,p.desc,p.family,...p.tags].join(' ').toLowerCase().includes(q)))}
+function render(){const items=filtered();$('resultCount').textContent=`${items.length} fragancia${items.length===1?'':'s'}`; $('catalogGrid').innerHTML=items.length?items.map(p=>card(p)).join(''):`<div class="empty"><i class="fa-solid fa-magnifying-glass" style="font-size:2rem;margin-bottom:12px"></i><p>No encontramos fragancias con esos criterios.</p><button class="tab-btn" onclick="clearFilters()" style="margin-top:14px">Ver todo</button></div>`}
+function card(p){return `<article class="card" onclick="openDetail(${p.id})"><div class="pic"><span class="tag">${p.category}</span><button class="fav ${favorites.has(p.id)?'active':''}" onclick="event.stopPropagation();toggleFav(${p.id})" aria-label="Favorito"><i class="fa-${favorites.has(p.id)?'solid':'regular'} fa-heart"></i></button><img src="${p.img}" alt="${p.ref}" onerror="this.style.opacity=.2"></div><div class="card-body"><h3>${p.ref}</h3><div class="inspired">Inspirado en ${p.name}</div><p class="desc">${p.desc}</p><div class="chips"><span class="chip">${p.family}</span>${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><div class="actions" onclick="event.stopPropagation()"><select class="variant" id="v-${p.id}">${p.variants.map((v,i)=>`<option value="${i}">${v.size} —${v.priceUSD} USD</option>`).join('')}</select><button class="add" onclick="addToCart(${p.id})"><i class="fa-solid fa-bag-shopping"></i> Agregar al carrito</button></div></div></article>`}
+function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);save();render();updateFavButtons()}
+function updateFavButtons(){const b=$('favFilter');b.classList.toggle('active',filters.favorites);b.innerHTML=filters.favorites?'<i class="fa-solid fa-heart"></i> Solo favoritos':'<i class="fa-regular fa-heart"></i> Solo favoritos';}
+function clearFilters(){filters={category:'todos',family:'todos',collection:'todos',favorites:false};$('searchInput').value='';$('categoryFilter').value='todos';$('familyFilter').value='todos';$('collectionFilter').value='todos';render();updateFavButtons()}
+window.clearFilters=clearFilters;
+function addToCart(id,variantIndex=null){const p=products.find(x=>x.id===id), sel=$(`v-${id}`);const v=p.variants[variantIndex??Number(sel.value)];let item=cart.find(x=>x.id===id&&x.size===v.size);if(item)item.quantity++;else cart.push({id,ref:p.ref,name:p.name,img:p.img,size:v.size,priceUSD:v.priceUSD,quantity:1});save();updateCart()}
+function addCombo(){const selected=[...document.querySelectorAll('.combo-check:checked')].map(x=>Number(x.value));if(selected.length<2)return;selected.forEach(id=>addComboItem(id));save();updateCart();openCart();document.querySelectorAll('.combo-check').forEach(x=>x.checked=false);updateCombo()}
+function addComboItem(id){const p=products.find(x=>x.id===id),v=p.variants[0];let item=cart.find(x=>x.id===id&&x.size===v.size);if(item)item.quantity++;else cart.push({id:p.id,ref:p.ref,name:p.name,img:p.img,size:v.size,priceUSD:v.priceUSD,quantity:1})}
+function updateCart(){let total=0,count=0;$('cartItems').innerHTML=cart.length?cart.map((x,i)=>{total+=x.priceUSD*x.quantity;count+=x.quantity;return `<div class="cart-item"><img src="${x.img}"><div><b>${x.ref}</b><small style="display:block;color:#777">${x.size} • ${x.priceUSD} USD</small><div class="qty"><button onclick="qty(${i},-1)">−</button><b>${x.quantity}</b><button onclick="qty(${i},1)">+</button><button onclick="removeItem(${i})" style="margin-left:auto;color:#b44;border:0;background:none"><i class="fa-solid fa-trash"></i></button></div></div></div>`}).join(''):`<div style="text-align:center;color:#888;padding:60px 10px">Tu carrito está vacío.</div>`;$('cartCount').textContent=count;$('cartTotal').textContent=money(total);let msg='Hola! Quisiera realizar el siguiente pedido en *KOVA Essentials*:%0A%0A';cart.forEach(x=>msg+=`• *${x.ref}* (${x.size}) × ${x.quantity} — ${x.priceUSD*x.quantity} USD%0A`);msg+=`%0A*Total:* ${total} USD`;$('sendWhatsApp').href=cart.length?`https://wa.me/5355360008?text=${msg}`:'#'}
+function qty(i,d){cart[i].quantity+=d;if(cart[i].quantity<=0)cart.splice(i,1);save();updateCart()} function removeItem(i){cart.splice(i,1);save();updateCart()}
+function lockPage(){document.body.classList.add('modal-open')} function unlockPage(){if(!$('cart').classList.contains('open')&&!$('detailModal').classList.contains('open')&&!$('explore').classList.contains('open'))document.body.classList.remove('modal-open')} function openCart(){$('cart').classList.add('open');$('overlay').classList.add('open');lockPage()} function closeCart(){$('cart').classList.remove('open');$('overlay').classList.remove('open');unlockPage()}
+function openDetail(id){const p=products.find(x=>x.id===id);$('detailContent').innerHTML=`<div class="detail"><img src="${p.img}"><div><div class="meta">${p.category} • ${p.family}</div><h2>${p.ref}</h2><p style="color:var(--gold);font-weight:600;margin:5px 0 15px">Inspirado en ${p.name}</p><p style="color:#666">${p.desc}</p><div class="chips" style="margin-top:18px">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}<span class="chip">${p.collection==='duppe'?'Duppé':p.collection==='eternals'?'Eternals Perfume Oil':'Compound One'}</span></div><select class="variant" id="detail-v-${p.id}">${p.variants.map((v,i)=>`<option value="${i}">${v.size} —${v.priceUSD} USD</option>`).join('')}</select><button class="add" style="margin-top:12px" onclick="addToCart(${p.id},Number(document.getElementById('detail-v-${p.id}').value));$('detailModal').classList.remove('open');unlockPage()">Agregar al carrito</button></div></div>`;$('detailModal').classList.add('open');lockPage()}
+function updateCombo(){const checked=[...document.querySelectorAll('.combo-check:checked')];let sub=checked.reduce((s,c)=>s+Number(c.dataset.price),0),n=checked.length;let pct=n>=6?.15:n>=4?.10:n>=2?.05:0,disc=sub*pct;$('comboQty').textContent=n;$('comboSubtotal').textContent=money(sub);$('comboDiscount').textContent=disc?`−${money(disc)}`:'$0 USD';$('comboTotal').textContent=money(sub-disc);$('comboHint').textContent=n<2?'Selecciona al menos 2 fragancias.':`Descuento aplicado: ${Math.round(pct*100)}%`;$('addCombo').disabled=n<2}
+function renderCombo(){$('comboList').innerHTML=products.map(p=>{const v=p.variants[0];return `<label class="combo-option"><input class="combo-check" type="checkbox" value="${p.id}" data-price="${v.priceUSD}"><span><b>${p.ref}</b><small style="display:block;color:#999">${v.size} • ${v.priceUSD} USD</small></span></label>`}).join('');document.querySelectorAll('.combo-check').forEach(x=>x.addEventListener('change',updateCombo))}
+
+$('searchToggle').addEventListener('click',()=>{const open=$('searchPanel').classList.toggle('open');if(open){setTimeout(()=>$('searchInput').focus(),40)}else{$('searchInput').blur()}});$('searchSubmit').addEventListener('click',()=>{$('searchPanel').classList.remove('open');$('searchInput').blur()});$('searchInput').addEventListener('keydown',e=>{if(e.key==='Escape'){$('searchPanel').classList.remove('open');$('searchInput').blur()}});$('searchInput').addEventListener('input',render);$('categoryFilter').addEventListener('change',e=>{filters.category=e.target.value;render()});$('familyFilter').addEventListener('change',e=>{filters.family=e.target.value;render()});$('collectionFilter').addEventListener('change',e=>{filters.collection=e.target.value;render()});$('favFilter').addEventListener('click',()=>{filters.favorites=!filters.favorites;render();updateFavButtons()});$('clearFilters').addEventListener('click',clearFilters);$('quickFav').addEventListener('click',()=>{$('filterDrawer').classList.add('open');filters.favorites=true;render();updateFavButtons();$('catalog').scrollIntoView({behavior:'smooth'})});$('filterToggle').addEventListener('click',()=>{const open=$('filterDrawer').classList.toggle('open');$('filterToggle').classList.toggle('open',open);});$('cartToggle').addEventListener('click',openCart);$('closeCart').addEventListener('click',closeCart);$('overlay').addEventListener('click',closeCart);$('detailClose').addEventListener('click',()=>{$('detailModal').classList.remove('open');unlockPage()});$('detailModal').addEventListener('click',e=>{if(e.target.id==='detailModal'){$('detailModal').classList.remove('open');unlockPage()}});$('addCombo').addEventListener('click',addCombo);
+
+// Control de apertura/cierre de la hamburguesa y bloqueo de scroll
+$('exploreBtn').addEventListener('click',()=>{
+  const isOpen = $('explore').classList.toggle('open');
+  if(isOpen) lockPage(); else unlockPage();
+});
+document.addEventListener('click',e=>{
+  if(!$('explore').contains(e.target) && $('explore').classList.contains('open')){$('explore').classList.remove('open');
+    unlockPage();
+  }
+});
+document.querySelectorAll('.explore-menu button').forEach(b=>b.addEventListener('click',()=>{
+  if(b.dataset.category){
+    filters.category=b.dataset.category;$('categoryFilter').value=b.dataset.category;filters.family='todos';filters.collection='todos';filters.favorites=false;$('familyFilter').value='todos';$('collectionFilter').value='todos';render();$('catalog').scrollIntoView({behavior:'smooth'})
+  }else if(b.dataset.jump){
+    if(b.dataset.jump==='favorites'){filters.category='todos';filters.family='todos';filters.collection='todos';filters.favorites=true;$('categoryFilter').value='todos';$('familyFilter').value='todos';$('collectionFilter').value='todos';render();updateFavButtons();$('catalog').scrollIntoView({behavior:'smooth'})
+    }else{document.getElementById(b.dataset.jump)?.scrollIntoView({behavior:'smooth'})}
+  }
+  $('explore').classList.remove('open');
+  unlockPage();
+}));
+document.querySelectorAll('.collection').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.collection){filters.collection=b.dataset.collection;$('collectionFilter').value=b.dataset.collection;render();$('catalog').scrollIntoView({behavior:'smooth'})}}));
+renderCombo();render();updateCart();
+</script></body></html>
+
