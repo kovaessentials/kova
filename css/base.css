@@ -1,0 +1,4 @@
+/* KOVA — Base / typography / global elements */
+h1,h2,h3,.brand-font{font-family:'Playfair Display',serif}
+button,input,select{font:inherit}
+button{cursor:pointer}

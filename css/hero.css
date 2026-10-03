@@ -1,0 +1,2 @@
+/* KOVA — Hero and intro */
+.intro{max-width:780px;margin:-20px auto 24px;position:relative;z-index:5;padding:14px 20px;background:#111;color:#fff;border:1px solid #3b301e;border-radius:16px;box-shadow:var(--shadow);text-align:center} .intro strong{color:var(--gold2)}

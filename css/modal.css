@@ -1,0 +1,4 @@
+/* KOVA — Product detail modal */
+@media(max-width:800px){.collection-grid{grid-template-columns:1fr 1fr} .combo-grid,.detail{grid-template-columns:1fr} .combo-list{grid-template-columns:1fr} .combo-summary{position:static} .nav .explore-btn span,.cart-btn span.label{display:none}}
+.explore-menu{background:#151515;border-color:#3a3120}.explore-menu button{color:#eee}.explore-menu button:hover{background:#242018;color:var(--gold2)}
+
