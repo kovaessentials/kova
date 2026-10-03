@@ -1,4 +1,0 @@
-/* KOVA — Shopping cart */
-.modal{position:fixed;overflow:hidden;touch-action:auto;inset:0;background:#000a;z-index:1200;display:none;align-items:center;justify-content:center;padding:18px} .modal.open{display:flex} .modal-box{width:min(850px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:16px;padding:25px;position:relative} .modal-close{position:absolute;right:14px;top:12px;border:0;background:none;font-size:1.4rem} .detail{display:grid;grid-template-columns:320px 1fr;gap:25px} .detail img{width:100%;height:320px;object-fit:contain;background:#f5f4f1;border-radius:12px} .detail h2{font-size:2rem} .detail .meta{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:.8rem}
-.modal-box{background:#141414;color:var(--text)}.detail img{background:#0d0d0d}.detail p{color:#aaa!important}.modal-close{color:var(--text)}
-

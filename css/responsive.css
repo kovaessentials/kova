@@ -1,5 +1,0 @@
-/* KOVA — Responsive breakpoints */
-@media(max-width:500px){.header-container{padding:6px 12px;min-height:72px}.logo{width:60px;height:60px}.logo-image{width:48px;height:48px}.menu-icon-btn,.header-icon-btn{width:40px;height:40px}.cart-btn{width:42px;height:42px}.hero{min-height:56vh}.hero-content{padding:62px 16px 46px}.hero h1{font-size:1.4rem;letter-spacing:2.5px}.hero-tagline{font-size:1rem}.hero p{font-size:.78rem}.intro{margin:-12px 14px 18px;padding:11px 14px;font-size:.76rem} .catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 10px} .card .pic{height:190px} .card-body{padding:12px} .card h3{font-size:1.02rem} .desc{font-size:.76rem} .actions{grid-template-columns:1fr} .variant{font-size:.65rem !important;padding:5px 2px} .actions .add{font-size:.68rem !important;padding:7px 2px} .collection-grid{grid-template-columns:1fr} .catalog-head,.controls,.section{padding-left:14px;padding-right:14px}}
-
-@media (prefers-color-scheme: dark){
-
