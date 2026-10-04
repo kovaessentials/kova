@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOVA — Primera colección (posts)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@500&display=swap">
+<style>
+:root{--gold:#9e7724;--goldl:#d6b056;--ink:#141210;--bg:#e4d8cb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#161616;color:#eee;font-family:'Montserrat',sans-serif;padding:20px 16px 60px;display:flex;flex-direction:column;align-items:center;gap:34px}
+.top{max-width:640px;text-align:center;font-size:.9rem;line-height:1.55;color:#bbb}.top b{color:#fff}
+.item{display:flex;flex-direction:column;align-items:center;gap:12px}
+.item h2{font-size:.85rem;font-weight:500;color:#d6b056;letter-spacing:.08em}
+.frame{position:relative;overflow:hidden;border-radius:6px}
+.btn{background:#c9a24e;color:#111;border:0;border-radius:980px;padding:11px 22px;font:500 .85rem 'Montserrat',sans-serif;cursor:pointer}
+/* ---------- tablas de arte (tamaño real en px) ---------- */
+.ab{position:relative;width:1080px;overflow:hidden;background:var(--bg);transform-origin:0 0;font-family:'Montserrat',sans-serif}
+.ab img{position:absolute;display:block}
+.ab .mark{position:absolute;color:var(--gold);font-weight:500;text-transform:uppercase}
+.ab .rule{position:absolute;height:3px;width:64px;background:var(--gold)}
+.ab .title{position:absolute;font-family:'Playfair Display',Georgia,serif;font-weight:500;color:var(--ink);letter-spacing:-.02em}
+.ab .sub{position:absolute;color:#463c30;font-weight:400;text-transform:uppercase}
+.ab .vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(60,44,24,.26) 100%)}
+.ab .bar{position:absolute;left:0;right:0;bottom:0;background:#0c0c0c;border-top:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 76px;color:#ebe8e1}
+.ab .bar span:last-child{color:var(--goldl);font-weight:500;text-transform:uppercase;letter-spacing:.17em}
+/* 4:5 */
+#a{height:1350px}#a img{height:1350px;width:2400px;left:-1003px;top:0}
+#a .mark{left:76px;top:62px;font-size:27px;letter-spacing:.33em}#a .rule{left:76px;top:114px}
+#a .title{left:72px;top:122px;font-size:118px;line-height:.98}
+#a .sub{left:80px;top:392px;font-size:26px;letter-spacing:.3em}
+#a .bar{height:88px;font-size:25px}#a .bar span:last-child{font-size:22px}
+/* 1:1 */
+#b{height:1080px}#b img{height:1080px;width:1920px;left:-675px;top:0}
+#b .mark{left:76px;top:46px;font-size:24px;letter-spacing:.33em}#b .rule{left:76px;top:92px}
+#b .title{left:72px;top:100px;font-size:90px;line-height:.98}
+#b .sub{left:80px;top:300px;font-size:22px;letter-spacing:.3em}
+#b .bar{height:76px;font-size:22px}#b .bar span:last-child{font-size:19px}
+/* 9:16 historias (zonas seguras: 250px arriba y abajo) */
+#c{height:1920px}#c img{height:1238px;width:2202px;left:-881px;top:410px}
+#c .fade{position:absolute;left:0;right:0;top:410px;height:320px;background:linear-gradient(var(--bg),rgba(228,216,203,0))}
+#c .mark{left:76px;top:262px;font-size:28px;letter-spacing:.33em}#c .rule{left:76px;top:314px}
+#c .title{left:72px;top:326px;font-size:128px;line-height:.98}
+#c .sub{left:80px;top:612px;font-size:26px;letter-spacing:.3em}
+#c .base{position:absolute;left:0;right:0;top:1648px;bottom:0;background:#0c0c0c;border-top:2px solid var(--gold)}
+#c .cta{position:absolute;left:0;right:0;top:1690px;text-align:center;color:var(--goldl);font-weight:500;font-size:28px;letter-spacing:.2em;text-transform:uppercase}
+#c .url{position:absolute;left:0;right:0;top:1740px;text-align:center;color:#ebe8e1;font-size:26px}
+</style></head><body>
+<div class="top"><b>Primera colección: tres formatos.</b><br>Cada uno se descarga como PNG en su tamaño real. La descarga funciona cuando esta página está subida a tu hosting; si la abres suelta, haz una captura de pantalla.</div>
+
+<div class="item"><h2>FEED 4:5 · 1080 × 1350</h2>
+<div class="frame"><div class="ab" id="a"><img src="base-sin-texto.jpg" alt=""><div class="vig"></div>
+<div class="mark">KOVA Essentials</div><div class="rule"></div><div class="title">Primera<br>colección</div><div class="sub">Duppé Scents</div>
+<div class="bar"><span>kovaessentials.github.io</span><span>Pedidos por WhatsApp</span></div></div></div>
+<button class="btn" data-id="a" data-name="kova-primera-coleccion-feed-4x5">Descargar PNG</button></div>
+
+<div class="item"><h2>FEED 1:1 · 1080 × 1080</h2>
+<div class="frame"><div class="ab" id="b"><img src="base-sin-texto.jpg" alt=""><div class="vig"></div>
+<div class="mark">KOVA Essentials</div><div class="rule"></div><div class="title">Primera<br>colección</div><div class="sub">Duppé Scents</div>
+<div class="bar"><span>kovaessentials.github.io</span><span>Pedidos por WhatsApp</span></div></div></div>
+<button class="btn" data-id="b" data-name="kova-primera-coleccion-feed-1x1">Descargar PNG</button></div>
+
+<div class="item"><h2>HISTORIAS 9:16 · 1080 × 1920</h2>
+<div class="frame"><div class="ab" id="c"><img src="base-sin-texto.jpg" alt=""><div class="fade"></div><div class="vig"></div>
+<div class="mark">KOVA Essentials</div><div class="rule"></div><div class="title">Primera<br>colección</div><div class="sub">Duppé Scents</div>
+<div class="base"></div><div class="cta">Pedidos por WhatsApp</div><div class="url">kovaessentials.github.io</div></div></div>
+<button class="btn" data-id="c" data-name="kova-primera-coleccion-historias-9x16">Descargar PNG</button></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+function fit(){const s=Math.min(1,(innerWidth-32)/1080);document.querySelectorAll('.frame').forEach(f=>{const ab=f.firstElementChild;ab.style.transform=`scale(${s})`;f.style.width=1080*s+'px';f.style.height=ab.offsetHeight*s+'px'})}
+fit();addEventListener('resize',fit);
+document.querySelectorAll('.btn').forEach(b=>b.addEventListener('click',async()=>{
+  const id=b.dataset.id,old=b.textContent;b.textContent='Preparando…';b.disabled=true;
+  try{
+    await document.fonts.ready;
+    const el=document.getElementById(id);
+    const c=await html2canvas(el,{scale:1,useCORS:true,backgroundColor:null,width:1080,height:el.offsetHeight,
+      onclone:d=>{const e=d.getElementById(id);e.style.transform='none';const f=e.parentElement;f.style.width='1080px';f.style.height=e.offsetHeight+'px';f.style.overflow='visible';f.style.borderRadius='0'}});
+    const a=document.createElement('a');a.download=b.dataset.name+'.png';a.href=c.toDataURL('image/png');a.click();
+  }catch(e){alert('No se pudo descargar aquí. Sube la página a tu hosting (https) o haz una captura de pantalla.')}
+  b.textContent=old;b.disabled=false;
+}));
+</script></body></html>
